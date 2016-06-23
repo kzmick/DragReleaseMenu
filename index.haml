@@ -1,0 +1,32 @@
+<!doctype html>
+%html.no-js{:lang => ""}
+	%head
+		%meta{:charset => "utf-8"}
+		%meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+		%title
+		%meta{:content => "", :name => "description"}
+		%meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+		%link{:href => "apple-touch-icon.png", :rel => "apple-touch-icon"}
+		%link{:href => "css/normalize.min.css", :rel => "stylesheet"}
+		%link{:href => "css/main.css", :rel => "stylesheet"}
+
+	%body
+		.phone
+			.screen
+				%ul.sideNav
+					%li.sideNav__item 
+						%span 1
+					%li.sideNav__item
+						%span 2
+					%li.sideNav__item
+						%span 3
+					%li.sideNav__item
+						%span 4
+
+				.panel
+					%h1 This is my main content panel
+					%p Click anywhere and drag right to access menu 
+
+
+		%script{:src => "js/vendor/jquery-1.11.2.min.js"}
+		%script{:src => "js/main2.js"}

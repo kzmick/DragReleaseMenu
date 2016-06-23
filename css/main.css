@@ -1,0 +1,214 @@
+/*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
+html {
+  color: #222;
+  font-size: 1em;
+  line-height: 1.4; }
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none; }
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none; }
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0; }
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle; }
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+textarea {
+  resize: vertical; }
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0; }
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 1px; }
+
+.phone {
+  margin: 7.5vh auto;
+  height: 85vh;
+  width: 39.78vh;
+  background-image: url("../img/phoneFrame.jpg");
+  background-size: contain;
+  background-repeat: no-repeat; }
+
+.screen {
+  position: relative;
+  width: 100%;
+  height: 59.075vh;
+  width: 33.2163vh;
+  top: 12.4625vh;
+  left: 3.40685vh;
+  overflow: hidden; }
+
+.panel {
+  position: absolute;
+  background-color: #f0f0f0;
+  width: 33.2163vh;
+  height: 59.075vh;
+  margin-left: 0;
+  transition: all .2s ease-in-out;
+  text-align: center;
+  line-height: 1.2;
+  padding: 5%; }
+  .panel:nth-of-type(2) {
+    left: 33.2163vh; }
+  .panel h1 {
+    font-size: 18em;
+    color: #505050; }
+  .panel p {
+    font-size: 12em;
+    color: #8c8c8c; }
+
+.moving {
+  transition: none; }
+
+ul.sideNav {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: red; }
+
+li.sideNav__item {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 75%;
+  list-style-type: none;
+  text-align: center;
+  background-color: #1e1e1e;
+  color: #8c8c8c;
+  user-select: none; }
+  li.sideNav__item span {
+    font-size: 24pt;
+    user-select: none; }
+  li.sideNav__item.active {
+    background-color: #2f2f2f;
+    color: #fafafa; }
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+.hidden {
+  display: none !important;
+  visibility: hidden; }
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto; }
+
+.invisible {
+  visibility: hidden; }
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table; }
+
+.clearfix:after {
+  clear: both; }
+
+.clearfix {
+  *zoom: 1; }
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important; }
+
+  a,
+  a:visited {
+    text-decoration: underline; }
+
+  a[href]:after {
+    content: " (" attr(href) ")"; }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")"; }
+
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: ""; }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid; }
+
+  thead {
+    display: table-header-group; }
+
+  tr,
+  img {
+    page-break-inside: avoid; }
+
+  img {
+    max-width: 100% !important; }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3; }
+
+  h2,
+  h3 {
+    page-break-after: avoid; } }

@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 1px;
+}
+
+$phoneHeight: 85vh;
+$phoneWidth: $phoneHeight * .468;
+
+$screenHeight: .695 * $phoneHeight;
+$screenWidth: .835 * $phoneWidth;
+
+
+.phone {
+    margin: 7.5vh auto;
+    height: 85vh;
+    width: $phoneWidth;
+    background-image: url('../img/phoneFrame.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.screen {
+    position: relative;
+    width: 100%;
+    height: $screenHeight;
+    width: $screenWidth;
+    top: (($phoneHeight - $screenHeight) / 2) - .5;
+    left: (($phoneWidth - $screenWidth) / 2) + .125;
+    overflow: hidden;
+}
+
+.panel {
+    position: absolute;
+    background-color: rgb(240,240,240);
+    width: $screenWidth;
+    height: $screenHeight;
+    margin-left: 0;
+    transition: all .2s ease-in-out;
+    text-align: center;
+    line-height: 1.2;
+    padding: 5%;
+
+    &:nth-of-type(2) {
+        left: $screenWidth;
+    }
+
+    h1 {
+        font-size: 18em;
+        color: rgb(80,80,80);
+    }
+
+    p {
+        font-size: 12em;
+        color: rgb(140,140,140)
+    }
+
+}
+
+.moving {
+    transition: none;
+}
+
+ul.sideNav {
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: red;
+}
+
+li.sideNav__item {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+
+    padding-right: 75%;
+    list-style-type: none;
+    text-align: center;
+    background-color: rgb(30,30,30);
+    color: rgb(140,140,140);
+    user-select: none;
+
+    span {
+        font-size: 24pt;
+        user-select: none;
+        
+    }
+
+    &.active {
+        background-color: rgb(47,47,47);
+        color: rgb(250,250,250);
+
+    }
+}
+
