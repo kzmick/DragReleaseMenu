@@ -79,7 +79,8 @@ textarea {
   width: 33.2163vh;
   height: 59.075vh;
   margin-left: 0;
-  transition: all .2s ease-in-out; }
+  transition: all .2s ease-in-out;
+  box-shadow: -3px 3px 8px #1e1e1e; }
 
 .panel__content {
   display: flex;
@@ -133,6 +134,7 @@ li.sideNav__item {
   list-style-type: none;
   text-align: center;
   background-color: #1e1e1e;
+  border-bottom: 1px solid #2f2f2f;
   color: #8c8c8c; }
   li.sideNav__item span {
     font-size: 18pt; }
