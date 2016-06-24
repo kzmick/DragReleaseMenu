@@ -1,69 +1,55 @@
 $(document).ready(function() {
 
+// Define variables for coordinates and mouse tracking
 	var clickYPos = 0,
-	  	clickXPos = 0,
-	    panelWidth = $(".panel").width(), 
+			clickXPos = 0,
+			panelWidth = $(".panel").width(), 
 			panelHeight = $(".panel").height(),
 			panelOffset = $(".panel").offset(),
-	    mouseDown = false;
+			mouseDown = false,
+			chosenCell = 1;
 
-	var movementScaleX = 0.5,
+// Define variables for movement and regions
+	var movementScaleX = 0.75,
 			movementRangeY = 25,
-			maxX = 0.25 * panelWidth;
+			marginMax = false,
+			maxX = 0.25 * panelWidth,
+			lockXRange = maxX * 085;
 
-
+// Define event listener for mouse movement
 	window.addEventListener('mousemove', function(e){ 
-	  if(mouseDown === true){
-	  	$('.panel').addClass('moving');
+		if(mouseDown === true){
+			
+			drawerSlide(e.pageX);
 
-	  	var marginAdjustment = ((e.pageX - clickXPos) * movementScaleX );
+			var calculatedY = verticalPosition(e.pageY);
 
-	  		if (marginAdjustment > maxX) {
-	  			marginAdjustment = maxX;
-	  		}
-
-	    $('.moving').css('margin-left', marginAdjustment + 'px');
-
-	    // var calculatedY = e.pageY - panelOffset.top;
-
-	    var offsetY = -(clickYPos - e.pageY);
-	    
-	    if (offsetY < -movementRangeY) {
-	    	offsetY = -movementRangeY;
-	    }
-
-	    if (offsetY > movementRangeY) {
-	    	offsetY = movementRangeY;
-	    }
-
-	    var scaleY = ((offsetY/2) + (movementRangeY/2)) / movementRangeY;
-
-
-	    var calculatedY = scaleY * panelHeight;
-
-	    detectMenuItem(calculatedY);	  
-	  }
+			detectMenuItem(calculatedY);	  
+		}
 	});
 
+// Define event listener for mouse down
 	window.addEventListener('mousedown', function(e){ 
 
-	  var relativeX = (e.pageX - panelOffset.left),
+		var relativeX = (e.pageX - panelOffset.left),
 				relativeY = (e.pageY - panelOffset.top);
 
-	  if (relativeX <= panelWidth && relativeX >= 0 && relativeY <= panelHeight && relativeY >= 0) {
-	  	mouseDown = true;
-	  	clickYPos = e.pageY; 
-	  	clickXPos = e.pageX;
-	  }
-
+		if (relativeX <= panelWidth && relativeX >= 0 && relativeY <= panelHeight && relativeY >= 0) {
+			mouseDown = true;
+			clickYPos = e.pageY; 
+			clickXPos = e.pageX;
+		}
 	});
 
+// Define event listener for mouseup
 	window.addEventListener('mouseup', function(){ 
-		mouseDown = false; 
+		mouseDown = false;
+		changeActiveContent(chosenCell);
 		$('.moving').css('margin-left', '0px');
 		$('.panel').removeClass('moving');
 	});
 
+// Define function to detect which cell should be active based on mouse position
 	function detectMenuItem(y) {
 		var cellHeight = $('.sideNav__item').height(),
 				hoverCell = 1 + Math.floor(y / cellHeight),
@@ -79,11 +65,60 @@ $(document).ready(function() {
 
 		var currentCell = hoverCell;
 
+		chosenCell = currentCell;
+
 		$('.active').removeClass('active');
 		$('.sideNav__item:nth-of-type(' + currentCell + ')').addClass('active');
-		console.log("currentCell " + currentCell);
-		console.log("totalCells " + totalCells);
+	}
 
+// Define function to control drawer open amount based on mouse movement
+	function drawerSlide(i) {
+		$('.panel').addClass('moving');
+
+		var marginAdjustment = ((i - clickXPos) * movementScaleX);
+
+		if (marginAdjustment > maxX ) {
+			marginAdjustment = maxX;
+			marginMax = true;
+		}
+
+		if (marginAdjustment < 0) {
+			marginAdjustment = 0;
+		}
+
+		if (marginMax === true) {
+			if (marginAdjustment > lockXRange) {
+				marginAdjustment = maxX;
+
+			} else if (marginAdjustment < lockXRange) {
+				marginMax = false;
+			}
+		}
+
+		$('.moving').css('margin-left', marginAdjustment + 'px');
+	}
+
+// Define function to calculate current mouse position in relation to click origin
+	function verticalPosition(i) {
+		var offsetY = -(clickYPos - i);
+		
+		if (offsetY < -movementRangeY) {
+			offsetY = -movementRangeY;
+		}
+
+		if (offsetY > movementRangeY) {
+			offsetY = movementRangeY;
+		}
+
+		var scaleY = ((offsetY/2) + (movementRangeY/2)) / movementRangeY;
+		var calculatedY = scaleY * panelHeight;
+
+		return calculatedY;
+	}
+
+	function changeActiveContent(i) {
+		var foo = '-' + (panelHeight * (i - 1)) + 'px';
+		$('.panel__content:nth-of-type(1)').css('margin-top', foo);
 	}
 
 });

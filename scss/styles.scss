@@ -45,24 +45,43 @@ $screenWidth: .835 * $phoneWidth;
     height: $screenHeight;
     margin-left: 0;
     transition: all .2s ease-in-out;
-    text-align: center;
-    line-height: 1.2;
-    padding: 5%;
+}
 
-    &:nth-of-type(2) {
-        left: $screenWidth;
-    }
+.panel__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 8%;
+    border: 1px solid rgb(200,200,200);
 
     h1 {
+        font-size: 62em;
+        color: rgb(185,185,185);
+        margin: 0;
+        line-height: 1;
+    }
+
+    h2 {
         font-size: 18em;
+        font-weight: 300;
+        line-height: 1;
         color: rgb(80,80,80);
+        margin: .4em 0 .2em;
     }
 
     p {
         font-size: 12em;
-        color: rgb(140,140,140)
+        color: rgb(115,115,115);
+        line-height: 1.4;
+        margin-top: 2em;
     }
 
+    &:nth-of-type(1) {
+        margin-top: 0;
+        transition: margin-top .4s ease-in-out;
+    }
 }
 
 .moving {
@@ -96,7 +115,7 @@ li.sideNav__item {
     color: rgb(140,140,140);
 
     span {
-        font-size: 24pt;
+        font-size: 18pt;
         
     }
 
