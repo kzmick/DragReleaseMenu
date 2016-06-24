@@ -132,6 +132,8 @@ ul.sideNav {
   height: 100px;
   width: 2px;
   background-color: #ff3c28; }
+  .sideNav__indicator.lock {
+    transition: top .1s ease-out; }
 
 li.sideNav__item {
   display: flex;
