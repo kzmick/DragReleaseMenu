@@ -52,6 +52,7 @@ $(document).ready(function() {
 		changeActiveContent(chosenCell);
 		$('.moving').css('margin-left', '0px');
 		$('.panel').removeClass('moving');
+		scrollIndicatorControl('lock');
 	});
 
 // Define function to detect which cell should be active based on mouse position
@@ -126,10 +127,21 @@ $(document).ready(function() {
 
 // Define function to control scroll position indicator
 	function scrollIndicatorControl(i) {
-		var adjustedY = i * (panelHeight - cellHeight);
+		var indicatorObj = $('.sideNav__indicator');
+		var indicatorY = null;
 
-		$('.sideNav__indicator').css({
-				'top' : adjustedY,
+		indicatorObj.removeClass('lock');
+
+		if ( i === 'lock') {
+			indicatorY = (chosenCell * cellHeight) -cellHeight;
+			indicatorObj.addClass('lock');
+
+		} else {
+			indicatorY = i * (panelHeight - cellHeight);
+		}
+
+		indicatorObj.css({
+				'top' : indicatorY,
 				'height' : cellHeight
 		});
 
