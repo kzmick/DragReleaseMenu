@@ -125,6 +125,14 @@ ul.sideNav {
   padding: 0;
   background-color: red; }
 
+.sideNav__indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100px;
+  width: 2px;
+  background-color: #ff3c28; }
+
 li.sideNav__item {
   display: flex;
   flex: 1;

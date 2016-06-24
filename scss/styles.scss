@@ -103,6 +103,15 @@ ul.sideNav {
     background-color: red;
 }
 
+.sideNav__indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100px;
+    width: 2px;
+    background-color: rgb(255,60,40);
+}
+
 li.sideNav__item {
     display: flex;
     flex: 1;

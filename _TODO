@@ -1,1 +1,2 @@
 • Add sliders to control interaction variables
+• Rewrite js to consolidate into controllers and common variables, abstract functionality etc.
