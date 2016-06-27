@@ -7,6 +7,7 @@ $(document).ready(function() {
 			panelHeight = $(".panel").height(),
 			panelOffset = $(".panel").offset(),
 			cellHeight = $('.sideNav__item').height(),
+			indicatorHeight = cellHeight / 4,
 			mouseDown = false,
 			chosenCell = 1;
 
@@ -127,22 +128,29 @@ $(document).ready(function() {
 
 // Define function to control scroll position indicator
 	function scrollIndicatorControl(i) {
-		var indicatorObj = $('.sideNav__indicator');
-		var indicatorY = null;
+		$('.sideNav__indicator').addClass('active');
+
+		var indicatorObj = $('.sideNav__indicator.active'),
+			indicatorY = null,
+			localHeight = indicatorHeight,
+			localWidth = localHeight*0.5;
 
 		indicatorObj.removeClass('lock');
 
 		if ( i === 'lock') {
-			indicatorY = (chosenCell * cellHeight) -cellHeight;
+			indicatorY = ((chosenCell - 1) * cellHeight) + (cellHeight / 2);
+			localHeight = cellHeight;
 			indicatorObj.addClass('lock');
-
+			localWidth = '4px';
 		} else {
-			indicatorY = i * (panelHeight - cellHeight);
+			indicatorY = (i * (panelHeight - indicatorHeight)) + (indicatorHeight * 0.5);
 		}
 
 		indicatorObj.css({
-				'top' : indicatorY,
-				'height' : cellHeight
+			'top' : indicatorY,
+			'height' : localHeight,
+			'width' : localWidth,
+
 		});
 
 	}

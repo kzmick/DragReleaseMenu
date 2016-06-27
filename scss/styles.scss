@@ -107,12 +107,25 @@ ul.sideNav {
     position: absolute;
     top: 0;
     left: 0;
-    height: 100px;
-    width: 2px;
+    transform: translate3d(-50%,-50%,0);
+    height: 100%;
+    width: 4px;
     background-color: rgb(255,60,40);
+    transition: height .3s ease-out;
+    border-radius: 50%;
+
+    &.active {
+        border-radius: 50%;
+        top: 1;
+        height: 1;
+        width: 1;
+    }
 
     &.lock {
-        transition: top .1s ease-out;
+        width: 4px;
+        transition: all .1s ease-out;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
     }
 }
 
