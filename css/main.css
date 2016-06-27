@@ -125,6 +125,27 @@ ul.sideNav {
   padding: 0;
   background-color: red; }
 
+.sideNav__indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate3d(-50%, -50%, 0);
+  height: 100%;
+  width: 4px;
+  background-color: #ff3c28;
+  transition: height .3s ease-out;
+  border-radius: 50%; }
+  .sideNav__indicator.active {
+    border-radius: 50%;
+    top: 1;
+    height: 1;
+    width: 1; }
+  .sideNav__indicator.lock {
+    width: 4px;
+    transition: all .1s ease-out;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
+
 li.sideNav__item {
   display: flex;
   flex: 1;

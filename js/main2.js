@@ -6,6 +6,8 @@ $(document).ready(function() {
 			panelWidth = $(".panel").width(), 
 			panelHeight = $(".panel").height(),
 			panelOffset = $(".panel").offset(),
+			cellHeight = $('.sideNav__item').height(),
+			indicatorHeight = cellHeight / 4,
 			mouseDown = false,
 			chosenCell = 1;
 
@@ -22,9 +24,13 @@ $(document).ready(function() {
 			
 			drawerSlide(e.pageX);
 
-			var calculatedY = verticalPosition(e.pageY);
+			var scaleY = verticalPosition(e.pageY);
 
-			detectMenuItem(calculatedY);	  
+			scrollIndicatorControl(scaleY);	  
+
+			var calculatedY = scaleY * panelHeight;
+
+			detectMenuItem(calculatedY);
 		}
 	});
 
@@ -47,12 +53,12 @@ $(document).ready(function() {
 		changeActiveContent(chosenCell);
 		$('.moving').css('margin-left', '0px');
 		$('.panel').removeClass('moving');
+		scrollIndicatorControl('lock');
 	});
 
 // Define function to detect which cell should be active based on mouse position
 	function detectMenuItem(y) {
-		var cellHeight = $('.sideNav__item').height(),
-				hoverCell = 1 + Math.floor(y / cellHeight),
+		var hoverCell = 1 + Math.floor(y / cellHeight),
 				totalCells = Math.floor($('.screen').height() / cellHeight);
 
 		if (hoverCell < 1) {
@@ -111,14 +117,42 @@ $(document).ready(function() {
 		}
 
 		var scaleY = ((offsetY/2) + (movementRangeY/2)) / movementRangeY;
-		var calculatedY = scaleY * panelHeight;
 
-		return calculatedY;
+		return scaleY;
 	}
-
+// Define function to change change active content panel on release event
 	function changeActiveContent(i) {
 		var foo = '-' + (panelHeight * (i - 1)) + 'px';
 		$('.panel__content:nth-of-type(1)').css('margin-top', foo);
+	}
+
+// Define function to control scroll position indicator
+	function scrollIndicatorControl(i) {
+		$('.sideNav__indicator').addClass('active');
+
+		var indicatorObj = $('.sideNav__indicator.active'),
+			indicatorY = null,
+			localHeight = indicatorHeight,
+			localWidth = localHeight*0.5;
+
+		indicatorObj.removeClass('lock');
+
+		if ( i === 'lock') {
+			indicatorY = ((chosenCell - 1) * cellHeight) + (cellHeight / 2);
+			localHeight = cellHeight;
+			indicatorObj.addClass('lock');
+			localWidth = '4px';
+		} else {
+			indicatorY = (i * (panelHeight - indicatorHeight)) + (indicatorHeight * 0.5);
+		}
+
+		indicatorObj.css({
+			'top' : indicatorY,
+			'height' : localHeight,
+			'width' : localWidth,
+
+		});
+
 	}
 
 });
